@@ -10,6 +10,7 @@
 Fix the rules for pricelist.
     """,
     'data': [
+        'views/product_pricelist_views.xml',
     ],
     'demo': [
     ],

@@ -20,7 +20,7 @@ class Pricelist(models.Model):
         return False, []
 
     def _rule(self, product, qty, partner, rule):
-        return False
+        return None
 
     def _filter(self, product, qty, partner, rule):
         return None
@@ -61,12 +61,12 @@ class Pricelist(models.Model):
 
         is_product_template = products[0]._name == "product.template"
         if is_product_template:
-            prod_tmpl_ids = [tmpl.id for tmpl in products]
+            prod_tmpl_ids = products and [tmpl.id for tmpl in products] or []
             # all variants of all products
             prod_ids = [p.id for p in
                         list(chain.from_iterable([t.product_variant_ids for t in products]))]
         else:
-            prod_ids = [product.id for product in products]
+            prod_ids = products and [product.id for product in products] or []
             prod_tmpl_ids = [product.product_tmpl_id.id for product in products]
 
         where_sql_add, where_arg_add = self._add_where(products)
@@ -83,16 +83,20 @@ SELECT item.id
     AND (item.pricelist_id = %s) 
     AND (item.date_start IS NULL OR item.date_start<=%s) 
     AND (item.date_end IS NULL OR item.date_end>=%s)
-    ORDER BY item.applied_on, item.min_quantity desc, categ.parent_left desc;
+    ORDER BY item.applied_on, item.sequence, item.min_quantity desc, categ.parent_left desc;
 """
 
         if where_sql_add:
             query = select_query+where_sql_add+add_query
+            where = [prod_tmpl_ids, prod_ids, categ_ids]+where_arg_add+[self.id, date, date]
         else:
             query = select_query+add_query
+            where = [prod_tmpl_ids, prod_ids, categ_ids]+[self.id, date, date]
+        #_logger.info("PRICE LIST %s:%s:%s:%s:%s:%s:%s" % (prod_tmpl_ids, prod_ids, categ_ids, where_arg_add, self.id, date, date))
+        #_logger.info("SQL %s" % query)
         # Load all rules
         self._cr.execute(query,
-            tuple([prod_tmpl_ids, prod_ids, categ_ids]+where_arg_add+[self.id, date, date]))
+            tuple(where))
 
         item_ids = [x[0] for x in self._cr.fetchall()]
         items = self.env['product.pricelist.item'].browse(item_ids)
@@ -121,7 +125,7 @@ SELECT item.id
 
             price_uom = self.env['product.uom'].browse([qty_uom_id])
             for rule in items:
-                _logger.info("PRICELIST PRODUCT %s:::%s:%s:tmpl:%s" % (self._context, product.name, rule.name, is_product_template))
+                #_logger.info("PRICELIST PRODUCT %s:::%s:%s:tmpl:%s" % (self._context, product.name, rule.name, is_product_template))
                 if rule.min_quantity and qty_in_product_uom < rule.min_quantity:
                     continue
                 if is_product_template:
@@ -145,12 +149,15 @@ SELECT item.id
                     if not cat:
                         continue
 
-                if self._rule(product, qty, partner, rule):
-                    continue
+                if where_sql_add:
+                    has_add_rule = self._rule(product, qty, partner, rule)
+                    if has_add_rule != None and has_add_rule:
+                        continue
 
                 has_filtered = self._filter(product, qty, partner, rule)
-                if has_filtered != None and not has_filtered:
+                if has_filtered != None and has_filtered:
                     continue
+
 
                 if rule.base == 'pricelist' and rule.base_pricelist_id:
                     price_tmp = rule.base_pricelist_id._compute_price_rule([(product, qty, partner)])[product.id][0]  # TDE: 0 = price, 1 = rule
@@ -161,7 +168,7 @@ SELECT item.id
                     price = product.price_compute(rule.base)[product.id]
 
                 convert_to_price_uom = (lambda price: product.uom_id._compute_price(price, price_uom))
-
+                #_logger.info("Filter %s:%s:%s:%s:%s" % (has_filtered, rule.base, price, rule.compute_price, rule.price_discount))
                 if price is not False:
                     if rule.compute_price == 'fixed':
                         price = convert_to_price_uom(rule.fixed_price)
@@ -188,9 +195,16 @@ SELECT item.id
                     suitable_rule = rule
                 break
             # Final price conversion into pricelist currency
-            if suitable_rule and suitable_rule.compute_price != 'fixed' and suitable_rule.base != 'pricelist':
+            if (suitable_rule and suitable_rule.compute_price != 'fixed' and suitable_rule.base != 'pricelist') or (self.currency_id.id != product.currency_id.id):
                 price = product.currency_id.compute(price, self.currency_id, round=False)
-
+            #_logger.info("PRICE LIST END %s:%s:TO CURRENCY:%s:FROM CURRENCY:%s:%s" % (self.id, price, self.currency_id, product.currency_id, suitable_rule))
             results[product.id] = (price, suitable_rule and suitable_rule.id or False)
 
         return results
+
+class PricelistItem(models.Model):
+    _inherit = "product.pricelist.item"
+    _order = "applied_on, sequence, min_quantity desc, categ_id desc, id"
+
+    sequence = fields.Integer('Sequence', help="Determine the display order")
+

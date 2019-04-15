@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="lato2oflweb" inherit_id="web.assets_common" name="Lato ver 2.0 implements">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/less" href="/Lato2OFLWeb/static/src/less/latolatinfonts.less"/>
+            <link rel="stylesheet" type="text/less" href="/Lato2OFLWeb/static/src/less/latofonts.less"/>
+        </xpath>
+    </template>
+    <template id="lato2oflwebreport" inherit_id="web.report_assets_common" name="Lato ver 2.0 implements in Reports">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/less" href="/Lato2OFLWeb/static/src/less/latolatinfonts.less"/>
+            <link rel="stylesheet" type="text/less" href="/Lato2OFLWeb/static/src/less/latofonts.less"/>
+        </xpath>
+    </template>
+</odoo>
