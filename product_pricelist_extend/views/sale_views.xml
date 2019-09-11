@@ -5,6 +5,9 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
+            <field name="pricelist_id" position="after">
+                <field name="pricelist_base_on" groups="product.group_sale_pricelist" options="{'horizontal': true}" class="oe_edit_only" widget="radio"/>
+            </field>
             <xpath expr="//tree/field[@name='price_unit']" position="after">
                 <field name="company_price_unit" readonly="1"/>
             </xpath>

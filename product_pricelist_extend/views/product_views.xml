@@ -6,6 +6,12 @@
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_form_view"/>
             <field name="arch" type="xml">
+                <xpath expr="//div[@name='standard_price_uom']" position="after">
+                    <label for="min_standard_price" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
+                    <div name="min_standard_price_uom" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}">
+                        <field name="min_standard_price" widget='monetary' options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/>
+                    </div>
+                </xpath>
                 <xpath expr="//field[@name='list_price']" position="after">
                     <field name="company_list_price" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}" groups="product.group_product_pricelist"/>
                 </xpath>
@@ -16,12 +22,15 @@
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
             <field name="arch" type="xml">
+                <xpath expr="//field[@name='standard_price']" position="after">
+                    <field name="min_standard_price" widget='monetary' options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/>
+                </xpath>
                 <xpath expr="//field[@name='lst_price']" position="after">
                     <field name="company_lst_price" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}" attrs="{'readonly': [('product_variant_count', '&gt;', 1)]}"/>
                 </xpath>
             </field>
         </record>
-        <record id="product_normal_form_view" model="ir.ui.view">
+        <record id="product_template_form_company_view" model="ir.ui.view">
             <field name="name">product.product.form</field>
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product_pricelist_extend.product_template_form_view"/>

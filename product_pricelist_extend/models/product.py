@@ -11,6 +11,15 @@ class ProductProduct(models.Model):
     company_lst_price = fields.Float('Company Sale Price', compute='_compute_product_company_lst_price',
         digits=dp.get_precision('Product Price'), inverse='_set_product_company_lst_price',
         help="The Company sale price is managed from the product template. Click on the 'Variant Prices' button to set the extra attribute prices.")
+    min_standard_price = fields.Float(
+        'Min Cost', company_dependent=True,
+        digits=dp.get_precision('Product Price'),
+        compute='_compute_product_company_min_standard_price',
+        store=True,
+        groups="base.group_user",
+        help="Min Cost used for compare with standard price. "
+             "When used standard price as a base price for pricelists. "
+             "Expressed in the default unit of measure of the product.")
 
     @api.depends('company_list_price', 'price_extra')
     def _compute_product_company_lst_price(self):
@@ -33,3 +42,11 @@ class ProductProduct(models.Model):
                 value = product.company_lst_price
             value -= product.price_extra
             product.write({'company_list_price': value})
+
+    def _compute_product_company_min_standard_price(self):
+        for product in self:
+            company = self.env.user.company_id
+            if self._context.get('uom'):
+                product.min_standard_price = company.default_pricelist_id.get_product_risк_margin(product, uom_id=self._context['uom'])
+            else:
+                product.min_standard_price = company.default_pricelist_id.get_product_risк_margin(product)

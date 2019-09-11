@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--
+        <record id="product_pricelist_sequence_view" model="ir.ui.view">
+            <field name="name">product.pricelist.form</field>
+            <field name="model">product.pricelist</field>
+            <field name="inherit_id" ref="product.product_pricelist_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='name']" position="before">
+                    <field name="sequence" widget="handle"/>
+                </xpath>
+            </field>
+        </record>
+        -->
+
+        <record id="product_pricelist_item_tree_view" model="ir.ui.view">
+            <field name="name">product.pricelist.item.tree</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="inside">
+                    <field name="fixed_price" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <field name="pricelist_id" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="product.product_pricelist_item_view_search">
+            <field name="name">product.pricelist.item.search</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="arch" type="xml">
+                <search string="Product Item Search">
+                    <field name="name" string="Product Item"/>
+                    <field name="pricelist_id" string="Pricelist"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Pricelist" name="groupby_pricelist_id" domain="[]" context="{'group_by': 'pricelist_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="act_open_product_pricelist_item" model="ir.actions.act_window">
+            <field name="name">Pricelist Items</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.pricelist.item</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="product.product_pricelist_item_view_search" />
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a pricelist items.
+              </p>
+            </field>
+        </record>
+        <record id="product_pricelist_item_form_risk_margin_view" model="ir.ui.view">
+            <field name="name">product.pricelist.item.risk_margin.form</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//label[@for='compute_price']" position="before">
+                    <field name="risк_margin" string="Risk margin"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="product_pricelist_view" model="ir.ui.view">
+            <field name="name">product.pricelist.form</field>
+            <field name="model">product.pricelist</field>
+            <field name="inherit_id" ref="product.product_pricelist_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="%(act_open_product_pricelist_item)d" string="Items" type="action"
+                        icon="fa fa-sitemap"
+                        context="{'default_pricelist_id': active_id, 'search_default_pricelist_id': active_id}">Items</button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

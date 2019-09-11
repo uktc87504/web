@@ -3,6 +3,12 @@
 from odoo import fields, api, models, _
 from odoo.addons import decimal_precision as dp
 
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    pricelist_base_on = fields.Selection([
+        ('pricelist', 'Standart rule'),
+    ], string='Price list Base on', default='pricelist')
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'

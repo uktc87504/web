@@ -5,7 +5,7 @@
     'name': 'Products & Pricelists Extend',
     'version': '11.0.0.1.0',
     'category': 'Sales',
-    'depends': ['product', 'sale', 'base'],
+    'depends': ['product', 'sale', 'base', 'product_properties'],
     'description': """
 Fix the rules for pricelist.
     """,
