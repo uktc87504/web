@@ -69,7 +69,7 @@ class LoyaltyRule(models.Model):
 
     @api.multi
     def _check_match(self, product, qty, price, **kwargs):
-        _logger.info("Rulse %s" % kwargs)
+        #_logger.info("Rulse %s" % kwargs)
         return True
 
     @api.multi

@@ -28,7 +28,7 @@ class Pricelist(models.Model):
     def _rule(self, product, qty, partner, rule):
         return None
 
-    def _filter(self, product, qty, partner, rule):
+    def filter(self, product, qty, partner, rule):
         return None
 
     def _rule_compute_price(self, rule):
@@ -166,7 +166,7 @@ SELECT item.id
                     if has_add_rule != None and has_add_rule:
                         continue
 
-                has_filtered = self._filter(product, qty, partner, rule)
+                has_filtered = self.filter(product, qty, partner, rule)
                 if has_filtered != None and has_filtered:
                     continue
 

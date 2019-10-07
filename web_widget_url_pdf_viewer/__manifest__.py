@@ -9,7 +9,7 @@
               "dXFactoy Ltd., "
               "Odoo Community Association (OCA)",
     'website': 'https://github.com/rosenvladimirov/web',
-    'conflict': ['mrp'],
+    'conflicts': ['mrp'],
     'depends': ['web'],
     'data': [
         'view/web_widget_pdf_viewer.xml'

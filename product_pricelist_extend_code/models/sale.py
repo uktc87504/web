@@ -39,5 +39,7 @@ class SaleOrderLine(models.Model):
 
     def _get_real_price_currency(self, product, rule_id, qty, uom, pricelist_id):
         if not self.code and rule_id:
-            self.code = rule_id.code
+            PricelistItem = self.env['product.pricelist.item'].sudo().browse(rule_id)
+            if PricelistItem:
+                self.code = PricelistItem.code
         return super(SaleOrderLine, self)._get_real_price_currency(product, rule_id, qty, uom, pricelist_id)
