@@ -10,6 +10,7 @@ class SaleOrder(models.Model):
         ('pricelist', 'Standart rule'),
     ], string='Price list Base on', default='pricelist')
 
+
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 

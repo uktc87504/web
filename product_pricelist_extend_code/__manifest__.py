@@ -5,7 +5,7 @@
     'name': 'Products & Pricelists Extend add code',
     'version': '11.0.0.1.0',
     'category': 'Sales',
-    'depends': ['product', 'sale', 'stock', 'sale_product_set'],
+    'depends': ['product', 'sale', 'stock', 'sale_product_set', 'account'],
     'author': 'Rosen Vladimirov, dXFactor Ltd, Aneli Kolicheva',
     'description': """
 Add code to price rules.
@@ -13,6 +13,7 @@ Add code to price rules.
     'data': [
         'views/product_pricelist_views.xml',
         'views/sale_views.xml',
+        'views/account_invoice_view.xml',
         'views/product_set.xml',
         'views/product_views.xml',
     ],

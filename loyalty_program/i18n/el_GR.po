@@ -1,0 +1,608 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* loyalty_program
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e-20190711\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-13 19:30+0000\n"
+"PO-Revision-Date: 2019-10-13 19:30+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_program_code
+msgid "An internal identification code for the loyalty program configuration"
+msgstr "An internal identification code for the loyalty program configuration"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_reward_code
+msgid "An internal identification code for the loyalty program reward"
+msgstr "An internal identification code for the loyalty program reward"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_rule_code
+msgid "An internal identification code for the loyalty program rule"
+msgstr "An internal identification code for the loyalty program rule"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_program_name
+msgid "An internal identification for the loyalty program configuration"
+msgstr "An internal identification for the loyalty program configuration"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_rule_name
+msgid "An internal identification for this loyalty program rule"
+msgstr "An internal identification for this loyalty program rule"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_reward_name
+msgid "An internal identification for this loyalty reward"
+msgstr "An internal identification for this loyalty reward"
+
+#. module: loyalty_program
+#: model:ir.actions.act_window,help:loyalty_program.action_loyalty_program_form
+msgid "Click to create a Loyalty Program."
+msgstr "Click to create a Loyalty Program."
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_program_code
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_code
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_code
+msgid "Code"
+msgstr "Κωδικός"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_program_company_id
+msgid "Company"
+msgstr "Εταιρία"
+
+#. module: loyalty_program
+#: model:ir.ui.menu,name:loyalty_program.loyalty_config
+msgid "Configuration"
+msgstr "Διαμόρφωση"
+
+#. module: loyalty_program
+#: model:ir.model,name:loyalty_program.model_res_partner
+msgid "Contact"
+msgstr "Επαφή"
+
+#. module: loyalty_program
+#: model:ir.actions.act_window,help:loyalty_program.action_loyalty_orders
+msgid "Create a Quotation, the first step of a new sale."
+msgstr "Δημιουργήστε μια προσφορά, το πρώτο βήμα μιας νέας πώλησης."
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_program_create_uid
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_create_uid
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_create_uid
+msgid "Created by"
+msgstr "Δημιουργήθηκε από"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_program_create_date
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_create_date
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_create_date
+msgid "Created on"
+msgstr "Δημιουργήθηκε στις"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_cumulative
+msgid "Cumulative"
+msgstr "Cumulative"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_sale_order_loyalty_break_date
+msgid "Date of used"
+msgstr "Ημερομηνία ΠΠ"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_rule_type
+msgid "Differend type of lloyalty rules (product or category)"
+msgstr "Differend type of lloyalty rules (product or category)"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_discount
+#: selection:loyalty.reward,type:0
+msgid "Discount"
+msgstr "Έκπτωση"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_discount_product_id
+msgid "Discount Product"
+msgstr "Discount Product"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_program_display_name
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_display_name
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_display_name
+msgid "Display Name"
+msgstr "Εμφάνιση Ονόματος"
+
+#. module: loyalty_program
+#: selection:loyalty.reward,type:0
+msgid "Gift"
+msgstr "Gift"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_gift_product_id
+msgid "Gift Product"
+msgstr "Gift Product"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_program_pp_product
+msgid "How many loyalty points are given to the customer by product sold"
+msgstr "How many loyalty points are given to the customer by product sold"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_program_pp_currency
+msgid "How many loyalty points are given to the customer by sold currency"
+msgstr "How many loyalty points are given to the customer by sold currency"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_program_pp_order
+msgid "How many loyalty points are given to the customer for each sale or order"
+msgstr "How many loyalty points are given to the customer for each sale or order"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_rule_cumulative
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_rule_pp_product
+msgid "How many points the product will earn per product ordered"
+msgstr "How many points the product will earn per product ordered"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_rule_pp_currency
+msgid "How many points the product will earn per value sold"
+msgstr "How many points the product will earn per value sold"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_program_id
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_id
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_id
+msgid "ID"
+msgstr "Κωδικός"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_image
+msgid "Image"
+msgstr "Εικόνα"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_template_property_form
+msgid "Included in loyalty sets"
+msgstr "Included in loyalty sets"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_program___last_update
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward___last_update
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule___last_update
+msgid "Last Modified on"
+msgstr "Τελευταία τροποποίηση στις"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_program_write_uid
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_write_uid
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_write_uid
+msgid "Last Updated by"
+msgstr "Τελευταία Ενημέρωση από"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_program_write_date
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_write_date
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_write_date
+msgid "Last Updated on"
+msgstr "Τελευταία Ενημέρωση στις"
+
+#. module: loyalty_program
+#: model:ir.ui.menu,name:loyalty_program.loyalty_menu_root
+msgid "Loaylty"
+msgstr "Loaylty"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_sale_order_loyalty_id
+msgid "Loyalty"
+msgstr "Φροντίδα"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_sale_order_line_loyalty_points
+#: model:ir.model.fields,field_description:loyalty_program.field_sale_order_loyalty_points
+msgid "Loyalty Points"
+msgstr "ОК"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_loyalty_program_id
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_loyalty_program_id
+#: model:ir.model.fields,field_description:loyalty_program.field_res_partner_loyalty_program_id
+#: model:ir.model.fields,field_description:loyalty_program.field_res_users_loyalty_program_id
+#: model:ir.model.fields,field_description:loyalty_program.field_sale_order_loyalty_program_id
+#: model:ir.ui.view,arch_db:loyalty_program.view_loyalty_program_form
+msgid "Loyalty Program"
+msgstr "Πρόγραμμα αφοσίωσης"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_loyalty_program_form
+msgid "Loyalty Program Code"
+msgstr "Loyalty Program Code"
+
+#. module: loyalty_program
+#: model:ir.actions.act_window,name:loyalty_program.action_loyalty_program_form
+#: model:ir.ui.menu,name:loyalty_program.menu_loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_loyalty_program_tree
+msgid "Loyalty Programs"
+msgstr "Loyalty Programs"
+
+#. module: loyalty_program
+#: model:ir.actions.act_window,help:loyalty_program.action_loyalty_program_form
+msgid "Loyalty Programs allows you customer to earn points\n"
+"                and rewards when doing business at your shops."
+msgstr "Loyalty Programs allows you customer to earn points\n"
+"                and rewards when doing business at your shops."
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_loyalty_program_form
+msgid "Loyalty Reward"
+msgstr "Loyalty Reward"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_loyalty_program_form
+msgid "Loyalty Reward Code"
+msgstr "Loyalty Reward Code"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_loyalty_program_form
+msgid "Loyalty Rule"
+msgstr "Loyalty Rule"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_loyalty_program_form
+msgid "Loyalty Rule Code"
+msgstr "Loyalty Rule Code"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_order_loyalty_form
+msgid "Loyalty points"
+msgstr "Πόντοι"
+
+#. module: loyalty_program
+#: model:ir.model,name:loyalty_program.model_loyalty_program
+msgid "Loyalty program for customers"
+msgstr "Loyalty program for customers"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.sale_order_view_search_inherit_loyalty_sale
+#: model:ir.ui.view,arch_db:loyalty_program.view_loyalty_program_pivot
+msgid "Loyalty programs"
+msgstr "Loyalty programs"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_product_product_product_loyalty_ids
+#: model:ir.model.fields,field_description:loyalty_program.field_product_template_product_loyalty_ids
+msgid "Loyalty rule lines"
+msgstr "Loyalty rule lines"
+
+#. module: loyalty_program
+#: model:ir.model,name:loyalty_program.model_loyalty_rule
+#: model:ir.ui.view,arch_db:loyalty_program.view_loyalty_program_graph
+msgid "Loyalty rules"
+msgstr "Loyalty rules"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_image_medium
+msgid "Medium-sized image"
+msgstr "Μεσαίου-μεγέθους εικόνα"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_reward_image_medium
+msgid "Medium-sized image of the product. It is automatically resized as a 128x128px image, with aspect ratio preserved, only when the image exceeds one of those sizes. Use this field in form views or some kanban views."
+msgstr "Μεσαίου-μεγέθους εικόνα του είδους. Το μέγεθος αλλάζει αυτόματα σε εικόνα διαστάσεων 128x128px, με διατήρηση των αναλογιών, μόνο όταν η εικόνα υπερβαίνει αυτές τις διαστάσεις. Χρησιμοποιήστε αυτό το πεδίο για προβολές φορμών ή προβολές kanban."
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_minimum_points
+msgid "Minimum Points"
+msgstr "Minimum Points"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_program_name
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_name
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_name
+#: model:ir.ui.view,arch_db:loyalty_program.view_loyalty_program_form
+msgid "Name"
+msgstr "Περιγραφή"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.sale_order_view_search_inherit_loyalty_sale
+msgid "Non Used"
+msgstr "Non Used"
+
+#. module: loyalty_program
+#: model:ir.actions.act_window,help:loyalty_program.action_loyalty_orders
+msgid "Once the quotation is confirmed, it becomes a sales order.\n"
+"                    You'll be able to invoice it and collect payments.\n"
+"                    From the <i>Sales Orders</i> menu, you can track delivery\n"
+"                    orders or services."
+msgstr "Μόλις επιβεβαιωθεί η προσφορά, γίνεται παραγγελία.\n"
+"Θα μπορείτε να τιμολογήσετε και να συλλέγετε πληρωμές.\n"
+"Από το μενού <i>Παραγγελίες</i> μπορείτε να παρακολουθήσετε την παράδοση των παραγγελιών ή των υπηρεσιών."
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_order_loyalty_tree
+msgid "Order Date"
+msgstr "Ημερ. Παραγγελίας"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_order_loyalty_tree
+msgid "Order Number"
+msgstr "Νο Εντολής"
+
+#. module: loyalty_program
+#: model:ir.ui.menu,name:loyalty_program.menu_loyalty_sale_order
+msgid "Orders"
+msgstr "Πωλήσεις"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_point_cost
+msgid "Point Cost"
+msgstr "Point Cost"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_point_product_id
+msgid "Point Product"
+msgstr "Point Product"
+
+#. module: loyalty_program
+#: model:ir.ui.menu,name:loyalty_program.loyalty_sale_order_menu
+msgid "Points"
+msgstr "Points"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_program_rounding
+msgid "Points Rounding"
+msgstr "Points Rounding"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_program_pp_currency
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_pp_currency
+msgid "Points per currency"
+msgstr "Points per currency"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_program_pp_order
+msgid "Points per order"
+msgstr "Points per order"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_program_pp_product
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_pp_product
+msgid "Points per product"
+msgstr "Πόντοι"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_sale_order_future_loyalty_points
+#: model:ir.model.fields,field_description:loyalty_program.field_sale_order_line_future_loyalty_points
+msgid "Potential Loyalty Points"
+msgstr "Πόντοι"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_order_loyalty_tree
+msgid "Potential Total Points"
+msgstr "Potential Total Points"
+
+#. module: loyalty_program
+#: model:ir.model,name:loyalty_program.model_product_product
+msgid "Product"
+msgstr "Προϊόν"
+
+#. module: loyalty_program
+#: model:ir.model,name:loyalty_program.model_product_template
+msgid "Product Template"
+msgstr "Πρότυπο Είδους "
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_product_tmpl_id
+msgid "Product template"
+msgstr "Πρότυπο Είδους"
+
+#. module: loyalty_program
+#: model:ir.model,name:loyalty_program.model_sale_order
+msgid "Quotation"
+msgstr "ΠΡΟΣΦΟΡΑ"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.sale_order_view_search_inherit_loyalty_sale
+msgid "Quotations"
+msgstr "Προσφορές"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.sale_order_view_search_inherit_loyalty_sale
+msgid "Quotations Sent"
+msgstr "Απεσταλμένες Προσφορές"
+
+#. module: loyalty_program
+#: selection:loyalty.reward,type:0
+msgid "Resale"
+msgstr "Resale"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_loyalty_program_form
+msgid "Reward Name"
+msgstr "Reward Name"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_loyalty_program_form
+msgid "Rewards"
+msgstr "Rewards"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_program_reward_ids
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_program_rule_ids
+#: model:ir.ui.view,arch_db:loyalty_program.view_loyalty_program_form
+msgid "Rules"
+msgstr "Κανόνες"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.sale_order_view_search_inherit_loyalty_sale
+msgid "Sales"
+msgstr "Πωλήσεις"
+
+#. module: loyalty_program
+#: model:ir.model,name:loyalty_program.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Γραμμή Παραγγελίας"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_order_loyalty_tree
+msgid "Sales Orders"
+msgstr "Παραγγελίες"
+
+#. module: loyalty_program
+#: model:ir.actions.act_window,name:loyalty_program.action_loyalty_orders
+msgid "Sales Orders with Loyalty programs"
+msgstr "Πωλήσεις με πόντους"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.sale_order_view_search_inherit_loyalty_sale
+msgid "Sales with Loyalty programs"
+msgstr "Sales with Loyalty programs"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_sequence
+msgid "Sequence"
+msgstr "Ακολουθία"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_image_small
+msgid "Small-sized image"
+msgstr "Μικρού μεγέθους εικόνα"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_reward_image_small
+msgid "Small-sized image of the product. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
+msgstr "Μικρού-μεγέθους φωτογραφία του είδους. Αυτόματα μετασχηματίζεται σε 64x64px εικόνα, με aspect ratio preserved. Χρησιμοποιήστε αυτό το πεδίο οπουδήποτε μια μικρή εικόνα είναι αναγκαία."
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_category_id
+msgid "Target Category"
+msgstr "Target Category"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_product_id
+msgid "Target Product"
+msgstr "Target Product"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_reward_loyalty_program_id
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_rule_loyalty_program_id
+msgid "The Loyalty Program this reward belongs to"
+msgstr "The Loyalty Program this reward belongs to"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_rule_category_id
+msgid "The category affected by the rule"
+msgstr "The category affected by the rule"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_reward_point_cost
+msgid "The cost of the reward per monetary unit discounted"
+msgstr "The cost of the reward per monetary unit discounted"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_reward_discount
+msgid "The discount percentage"
+msgstr "The discount percentage"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_program_rounding
+msgid "The loyalty point amounts are rounded to multiples of this value."
+msgstr "The loyalty point amounts are rounded to multiples of this value."
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_reward_minimum_points
+msgid "The minimum amount of points the customer must have to qualify for this reward"
+msgstr "The minimum amount of points the customer must have to qualify for this reward"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_rule_product_id
+msgid "The product affected by the rule"
+msgstr "The product affected by the rule"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_reward_gift_product_id
+msgid "The product given as a reward"
+msgstr "The product given as a reward"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_reward_point_product_id
+msgid "The product that represents a point that is sold by the customer"
+msgstr "The product that represents a point that is sold by the customer"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_reward_discount_product_id
+msgid "The product used to apply discounts"
+msgstr "The product used to apply discounts"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_reward_type
+msgid "The type of the reward"
+msgstr "The type of the reward"
+
+#. module: loyalty_program
+#: model:ir.model.fields,help:loyalty_program.field_loyalty_reward_image
+msgid "This field holds the image used as image for the product, limited to 1024x1024px."
+msgstr "Αυτό το πεδίο κρατά την εικόνα σαν φωτογραφία για το είδος, περιορισμένη σε  1024x1024px."
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_order_loyalty_tree
+msgid "Total Points"
+msgstr "Total Points"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_order_loyalty_tree
+msgid "Total Tax Included"
+msgstr "Συνολικός Φόρος που εμπεριέχεται"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_reward_type
+msgid "Type"
+msgstr "Τύπος"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_loyalty_rule_type
+msgid "Type of Loyalty Rule"
+msgstr "Type of Loyalty Rule"
+
+#. module: loyalty_program
+#: model:ir.model.fields,field_description:loyalty_program.field_sale_order_loyalty_break
+#: model:ir.ui.view,arch_db:loyalty_program.sale_order_view_search_inherit_loyalty_sale
+msgid "Used"
+msgstr "OK"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_order_loyalty_form
+msgid "Used Loyalty"
+msgstr "Επαλήθευση"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_loyalty_program_form
+msgid "e.g. Discount program"
+msgstr "e.g. Discount program"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_loyalty_program_form
+msgid "e.g. Rule program"
+msgstr "e.g. Rule program"
+
+#. module: loyalty_program
+#: model:ir.model,name:loyalty_program.model_loyalty_reward
+msgid "loyalty.reward"
+msgstr "loyalty.reward"
+
+#. module: loyalty_program
+#: model:ir.ui.view,arch_db:loyalty_program.view_loyalty_program_form
+msgid "please enter code e.g. LP001"
+msgstr "please enter code e.g. LP001"
+

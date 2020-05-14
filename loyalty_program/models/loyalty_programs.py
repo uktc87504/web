@@ -27,11 +27,14 @@ class LoyaltyProgram(models.Model):
         default=lambda self: self.env['res.company']._company_default_get(
             'loyalty.program'))
 
-    @api.multi
+    @api.model
     def calculate_loyalty_points(self, product, qty, price, **kwargs):
-        for rule in self.rule_ids.sorted(lambda r: r.sequence):
-            if rule.check_match(product, qty, price, **kwargs):
-                return rule.calculate_points(product, qty, price, **kwargs)
+        _logger.info("TEST %s" % self.sudo().rule_ids)
+        if self.rule_ids:
+            for rule in self.rule_ids.sorted(lambda r: r.sequence):
+                if rule.check_match(product, qty, price, **kwargs):
+                    #_logger.info("RETURN %s" % rule.calculate_points(qty, price))
+                    return rule.calculate_points(qty, price)
         return 0
 
     @api.depends('name', 'code')
@@ -68,9 +71,9 @@ class LoyaltyRule(models.Model):
 
 
     @api.multi
-    def _check_match(self, product, qty, price, **kwargs):
+    def check_match_ext(self, product, qty, price, **kwargs):
         #_logger.info("Rulse %s" % kwargs)
-        return True
+        return False, False
 
     @api.multi
     def check_match(self, product, qty, price, **kwargs):
@@ -82,13 +85,26 @@ class LoyaltyRule(models.Model):
                 return False
             else:
                 return is_child_of(p_categ, c_categ.parent_id)
+
         #Add quantity to rules matching?
-        return (not self.product_id or self.product_id == product) and (not self.product_tmpl_id or self.product_tmpl_id == product.product_tmpl_id) and (not self.category_id or is_child_of(self.category_id, product.categ_id)) and self._check_match(product, qty, price, **kwargs)
+        verify, force_break = self.check_match_ext(product, qty, price, **kwargs)
+        if force_break:
+            return verify
+        if verify:
+            return True
+        if (self.product_id and self.product_id == product):
+            return True
+        if (self.product_tmpl_id and self.product_tmpl_id == product.product_tmpl_id):
+            return True
+        if (self.category_id and is_child_of(self.category_id, product.categ_id)):
+            return True
+        return False
 
     @api.multi
-    def calculate_points(self, product, qty, price, **kwargs):
+    def calculate_points(self, qty, price):
         self.ensure_one()
         return self.pp_product * qty + self.pp_currency * price
+
 
 class LoyaltyReward(models.Model):
     _name = 'loyalty.reward'

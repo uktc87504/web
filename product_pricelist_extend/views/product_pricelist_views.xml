@@ -57,6 +57,7 @@
             <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//label[@for='compute_price']" position="before">
+                    <field name="standard_price" readonly="1" widget='monetary' options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/>
                     <field name="risк_margin" string="Risk margin"/>
                 </xpath>
             </field>

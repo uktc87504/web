@@ -46,7 +46,6 @@ class ProductTemplate(models.Model):
         if not pricelist:
             raise ValidationError(_("Not default pricelist for company"))
         prices = pricelist.get_products_price(self, [1.0]*len(self), [self.env.user.company_id.partner_id]*len(self))
-
         for template in self:
             template.company_list_price = prices.get(template.id, 0.0)
 

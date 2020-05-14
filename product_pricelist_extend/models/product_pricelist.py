@@ -2,6 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from itertools import chain
+from statistics import mean
 
 from odoo import api, fields, models, tools, _
 from odoo.exceptions import UserError, ValidationError
@@ -41,9 +42,7 @@ class Pricelist(models.Model):
     def _compute_price_rule(self, products_qty_partner, date=False, uom_id=False):
         """ Low-level method - Mono pricelist, multi products
         Returns: dict{product_id: (price, suitable_rule) for the given pricelist}
-
         If date in context: Date of the pricelist (%Y-%m-%d)
-
             :param products_qty_partner: list of typles products, quantity, partner
             :param datetime date: validity date
             :param ID uom_id: intermediate unit of measure
@@ -76,9 +75,9 @@ class Pricelist(models.Model):
             prod_tmpl_ids = products and [tmpl.id for tmpl in products] or []
             # all variants of all products
             prod_ids = [p.id for p in
-                        list(chain.from_iterable([t.product_variant_ids for t in products]))]
+                        list(chain.from_iterable([t.product_variant_ids for t in products]))  if not isinstance(p.id, models.NewId)]
         else:
-            prod_ids = products and [product.id for product in products] or []
+            prod_ids = products and [product.id for product in products if not isinstance(product.id, models.NewId)] or []
             prod_tmpl_ids = [product.product_tmpl_id.id for product in products]
 
         where_sql_add, where_arg_add = self._add_where(products)
@@ -104,8 +103,6 @@ SELECT item.id
         else:
             query = select_query+add_query
             where = [prod_tmpl_ids, prod_ids, categ_ids]+[self.id, date, date]
-        #_logger.info("PRICE LIST %s:%s:%s:%s:%s:%s:%s" % (prod_tmpl_ids, prod_ids, categ_ids, where_arg_add, self.id, date, date))
-        #_logger.info("SQL %s" % query)
         # Load all rules
         self._cr.execute(query,
             tuple(where))
@@ -137,7 +134,6 @@ SELECT item.id
 
             price_uom = self.env['product.uom'].browse([qty_uom_id])
             for rule in items:
-                #_logger.info("PRICELIST PRODUCT %s:::%s:%s:tmpl:%s" % (self._context, product.name, rule.name, is_product_template))
                 if rule.min_quantity and qty_in_product_uom < rule.min_quantity:
                     continue
                 if is_product_template:
@@ -170,9 +166,8 @@ SELECT item.id
                 if has_filtered != None and has_filtered:
                     continue
 
-
                 if rule.base == 'pricelist' and rule.base_pricelist_id:
-                    price_tmp = rule.base_pricelist_id._compute_price_rule([(product, qty, partner)])[product.id][0]  # TDE: 0 = price, 1 = rule
+                    price_tmp = rule.base_pricelist_id._compute_price_rule([(product, qty, partner)], date, uom_id)[product.id][0]  # TDE: 0 = price, 1 = rule
                     price = rule.base_pricelist_id.currency_id.compute(price_tmp, self.currency_id, round=False)
                 else:
                     # if base option is public price take sale price else cost price of product
@@ -180,7 +175,7 @@ SELECT item.id
                     price = product.price_compute(rule.base)[product.id]
 
                 convert_to_price_uom = (lambda price: product.uom_id._compute_price(price, price_uom))
-                #_logger.info("Filter %s:%s:%s:%s:%s" % (has_filtered, rule.base, price, rule.compute_price, rule.price_discount))
+
                 if price is not False:
                     if rule.compute_price == 'fixed':
                         price = convert_to_price_uom(rule.fixed_price)
@@ -221,9 +216,16 @@ SELECT item.id
                     suitable_rule = rule
                 break
             # Final price conversion into pricelist currency
-            if (suitable_rule and suitable_rule.compute_price != 'fixed' and suitable_rule.base != 'pricelist') or (self.currency_id.id != product.currency_id.id):
-                price = product.currency_id.compute(price, self.currency_id, round=False)
-            #_logger.info("PRICE LIST END %s:%s:TO CURRENCY:%s:FROM CURRENCY:%s:%s" % (self.id, price, self.currency_id, product.currency_id, suitable_rule))
+            #if (suitable_rule and suitable_rule.compute_price != 'fixed' and suitable_rule.base != 'pricelist') or (self.currency_id.id != product.currency_id.id):
+            #    price = product.currency_id.compute(price, self.currency_id, round=False)
+            #
+            if suitable_rule and suitable_rule.compute_price != 'fixed' and suitable_rule.base != 'pricelist':
+                if suitable_rule.base == 'standard_price':
+                    # The cost of the product is always in the company currency
+                    price = product.cost_currency_id.compute(price, self.currency_id, round=False)
+                else:
+                    price = product.currency_id.compute(price, self.currency_id, round=False)
+
             results[product.id] = (price, suitable_rule and suitable_rule.id or False)
 
         return results
@@ -349,7 +351,37 @@ class ProductPricelistItem(models.Model):
     risк_margin = fields.Float(
         'Min. Resk Price Margin in %', digits=dp.get_precision('Product Price'),
         help='Specify the minimum amount of margin (1 + risk margin/100) over the standart price.')
+    standard_price = fields.Float('Cost', compute='_compute_standard_price', digits=dp.get_precision('Product Price'))
+    cost_currency_id = fields.Many2one('res.currency', 'Cost Currency', compute='_compute_cost_currency_id')
 
+    @api.onchange('product_tmpl_id')
+    @api.depends('standard_price')
+    def _onchange_applied_on(self):
+        if self.product_tmpl_id:
+            if len(self.product_tmpl_id.product_variant_ids.ids) <= 1:
+                self.standard_price = self.product_tmpl_id.standard_price
+            else:
+                self.standard_price = mean([x.standard_price for x in self.product_tmpl_id.product_variant_ids])
+
+    @api.onchange('product_id')
+    @api.depends('standard_price')
+    def _onchange_applied_on(self):
+        if self.product_id:
+            self.standard_price = self.product_id.standard_price
+
+    @api.multi
+    @api.depends('product_tmpl_id', 'product_id', 'applied_on')
+    def _compute_standard_price(self):
+        for record in self:
+            if record.applied_on == '1_product':
+                if len(record.product_tmpl_id.product_variant_ids.ids) <= 1:
+                    record.standard_price = self.product_tmpl_id.standard_price
+                else:
+                    record.standard_price = mean([x.standard_price for x in self.product_tmpl_id.product_variant_ids])
+            elif record.applied_on == '0_product_variant':
+                record.standard_price = record.product_id.standard_price
+            else:
+                record.standard_price = 0.0
 #    @api.multi
 #    @api.depends('name', 'code')
 #    def name_get(self):
