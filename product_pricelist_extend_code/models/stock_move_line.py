@@ -7,4 +7,4 @@ from odoo import api, fields, models, _
 class StockMoveLine(models.Model):
     _inherit = "stock.move.line"
 
-    code = fields.Char('Code', translate=True)
+    code = fields.Char('Code')

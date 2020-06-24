@@ -1,0 +1,164 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_pricelist_extend
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e-20190711\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-01 07:43+0000\n"
+"PO-Revision-Date: 2019-08-01 07:43+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_pricelist_extend
+#: model:ir.model.fields,help:product_pricelist_extend.field_product_product_company_list_price
+#: model:ir.model.fields,help:product_pricelist_extend.field_product_template_company_list_price
+#: model:ir.model.fields,help:product_pricelist_extend.field_product_template_company_lst_price
+msgid "Base price to compute the customer price. Sometimes called the catalog price."
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model,name:product_pricelist_extend.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model.fields,field_description:product_pricelist_extend.field_product_template_company_lst_price
+msgid "Company Public Price"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model.fields,field_description:product_pricelist_extend.field_product_product_company_lst_price
+msgid "Company Sale Price"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model.fields,field_description:product_pricelist_extend.field_product_product_company_list_price
+#: model:ir.model.fields,field_description:product_pricelist_extend.field_product_template_company_list_price
+msgid "Company Sales Price"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model.fields,field_description:product_pricelist_extend.field_sale_order_line_company_price_unit
+msgid "Company Unit Price"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: selection:sale.order,pricelist_base_on:0
+msgid "Competitor price"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model.fields,help:product_pricelist_extend.field_product_template_min_standard_price
+msgid "Cost used for stock valuation in standard price and as a first price to set in average/fifo. Also used as a base price for pricelists. Expressed in the default unit of measure of the product. "
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model.fields,help:product_pricelist_extend.field_product_pricelist_item_sequence
+msgid "Determine the display order"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model.fields,field_description:product_pricelist_extend.field_product_product_min_standard_price
+#: model:ir.model.fields,field_description:product_pricelist_extend.field_product_template_min_standard_price
+msgid "Min Cost"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model.fields,help:product_pricelist_extend.field_product_product_min_standard_price
+msgid "Min Cost used for compare with standard price. When used standard price as a base price for pricelists. Expressed in the default unit of measure of the product."
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model.fields,field_description:product_pricelist_extend.field_product_pricelist_item_risк_margin
+msgid "Min. Resk Price Margin in %"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: code:addons/product_pricelist_extend/models/product_template.py:47
+#: code:addons/product_pricelist_extend/models/product_template.py:60
+#, python-format
+msgid "Not default pricelist for company"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model.fields,field_description:product_pricelist_extend.field_sale_order_pricelist_base_on
+msgid "Price list Base on"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model,name:product_pricelist_extend.model_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model,name:product_pricelist_extend.model_product_pricelist_item
+msgid "Pricelist item"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model,name:product_pricelist_extend.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model,name:product_pricelist_extend.model_product_template
+msgid "Product Template (Multi-Company)"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model,name:product_pricelist_extend.model_sale_order
+msgid "Quotation"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.ui.view,arch_db:product_pricelist_extend.product_pricelist_item_form_risk_margin_view
+msgid "Risk margin"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model.fields,field_description:product_pricelist_extend.field_res_company_default_pricelist_id
+msgid "Sale Pricelist"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model,name:product_pricelist_extend.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model.fields,field_description:product_pricelist_extend.field_product_pricelist_item_sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model.fields,help:product_pricelist_extend.field_product_pricelist_item_risк_margin
+msgid "Specify the minimum amount of margin (1 + risk margin/100) over the standart price."
+msgstr ""
+
+#. module: product_pricelist_extend
+#: selection:sale.order,pricelist_base_on:0
+msgid "Standart rule"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model.fields,help:product_pricelist_extend.field_product_product_company_lst_price
+#: model:ir.model.fields,help:product_pricelist_extend.field_sale_order_line_company_price_unit
+msgid "The Company sale price is managed from the product template. Click on the 'Variant Prices' button to set the extra attribute prices."
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model.fields,help:product_pricelist_extend.field_res_company_default_pricelist_id
+msgid "This pricelist will be used, instead of the default one, for sales to the current company"
+msgstr ""
+
+#. module: product_pricelist_extend
+#: model:ir.model,name:product_pricelist_extend.model_product_attribute_price
+msgid "product.attribute.price"
+msgstr ""
+

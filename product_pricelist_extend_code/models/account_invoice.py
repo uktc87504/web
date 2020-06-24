@@ -33,4 +33,4 @@ class AccountInvoice(models.Model):
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
-    code = fields.Char('Code', translate=True)
+    code = fields.Char('Code')

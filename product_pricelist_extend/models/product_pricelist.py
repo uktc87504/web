@@ -382,6 +382,7 @@ class ProductPricelistItem(models.Model):
                 record.standard_price = record.product_id.standard_price
             else:
                 record.standard_price = 0.0
+
 #    @api.multi
 #    @api.depends('name', 'code')
 #    def name_get(self):

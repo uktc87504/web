@@ -9,7 +9,7 @@ class ProductSetLine(models.TransientModel):
     _inherit = 'product.set.add.line'
 
     pricelist_rule_id = fields.Many2one('product.pricelist.item', string='Pricelist Rule')
-    code = fields.Char('Code', translate=True)
+    code = fields.Char('Code')
 
     def _get_real_price_currency(self, product, rule_id, qty, uom, pricelist_id):
         PricelistItem = self.env['product.pricelist.item'].sudo()
