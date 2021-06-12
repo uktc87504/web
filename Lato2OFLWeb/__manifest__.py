@@ -3,7 +3,7 @@
 
 {
     "name" : "Lato2OFLWeb implements",
-    "version" : "11.0.1.0",
+    "version" : "14.0.1.0",
     "author" : "Rosen Vladimirov",
     'category': 'Hidden',
     "description": """
